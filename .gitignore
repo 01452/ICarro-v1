@@ -85,3 +85,6 @@ Thumbs.db
 /src/app/.sass-cache/
 /src/assets/fonts/font-awesome/config.json
 /src/app/shared/privacy-police/.sass-cache/
+
+# Local Netlify folder
+.netlify
