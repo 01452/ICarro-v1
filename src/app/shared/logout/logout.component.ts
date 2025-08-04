@@ -7,7 +7,7 @@ import {parseParams} from '../../tools';
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css']
+  styleUrls: []
 })
 export class LogoutComponent implements OnInit {
 
