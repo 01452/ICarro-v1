@@ -1,0 +1,27 @@
+<div class="search-results-card">
+  <div class="search-result-navigator">
+    <app-search-navigator></app-search-navigator>
+  </div>
+  <div class="search-results">
+    <ng-container *ngIf="cars; else loading">
+      <ng-container *ngIf="cars.length>0; else noCars">
+        <div class="cars-container">
+          <a *ngFor="let car of cars" [href]="'/car/'+car.serial_number+'?startDate='+startDate+'&endDate='+endDate"
+             class="car-container">
+            <car-card [car]="car"></car-card>
+          </a>
+        </div>
+        <mat-paginator (page)="changePage($event)" [length]="length" [pageIndex]="page" [pageSizeOptions]="[10, 20, 50]"
+                       [pageSize]="pageSize">
+        </mat-paginator>
+      </ng-container>
+    </ng-container>
+    <ng-template #loading>
+      <mat-spinner class="loading"></mat-spinner>
+    </ng-template>
+    <ng-template #noCars>
+      <h3 class="no-cars-label">No available cars in {{city}}</h3>
+    </ng-template>
+  </div>
+</div>
+<app-footer></app-footer>

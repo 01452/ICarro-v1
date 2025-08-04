@@ -1,0 +1,33 @@
+@import "../../variables";
+
+.login-navigator {
+  font: .8rem/1.5em "Rawline Regular";
+  color: $dark-grey;
+  margin-top: 2%;
+
+  @media screen and(max-width: 800px), (orientation: portrait) {
+    margin-left: 10%;
+  }
+}
+
+a, .navigator {
+  text-decoration: underline;
+  font: .8rem/1.5em "Rawline Regular";
+  color: $dark-grey;
+  cursor: pointer;
+}
+
+.checkbox-container {
+
+  margin-top: 2vh;
+  position: relative;
+
+  label.terms-label {
+    font: .8rem/1.5em "Rawline Regular";
+    color: $dark-grey;
+    display: inline-block;
+    position: relative;
+    padding-left: 2em;
+    cursor: pointer;
+  }
+}

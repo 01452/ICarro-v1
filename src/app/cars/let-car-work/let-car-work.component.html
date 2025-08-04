@@ -1,0 +1,210 @@
+<div class="progress-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="car-card">
+  <h1 class="title">
+    Let the car work
+  </h1>
+  <h2 class="subtitle">
+    Write some details about your car to rent it out
+  </h2>
+  <form (submit)="addCar()" [formGroup]="carDetailForm">
+    <label class="part-label">Location:</label>
+    <div class="input-container">
+      <input #addressInput autocomplete="address" formControlName="pickUpPlace" id="pickUpPlace"
+             placeholder="Enter your address"
+             type="text">
+      <div *ngIf="isControlInvalid('pickUpPlace')" class="error">
+        Wrong address
+      </div>
+    </div>
+    <div class="address-data">{{addressText}}
+    </div>
+    <label class="part-label">Car details:</label>
+    <div class="input-container">
+      <label #makeLabel class="input-label" for="make">Make <span class="required-marker">*</span></label>
+      <input [carInput]="makeLabel" formControlName="make" id="make" type="text">
+      <div *ngIf="isControlInvalid('make')" class="error">
+        Make is required
+      </div>
+    </div>
+    <div class="input-container">
+      <label #modelLabel class="input-label" for="model">Model <span class="required-marker">*</span></label>
+      <input [carInput]="modelLabel" formControlName="model" id="model" type="text">
+      <div *ngIf="isControlInvalid('model')" class="error">
+        Model is required
+      </div>
+    </div>
+    <div class="input-container">
+      <label #yearLabel class="input-label" for="year">Year <span class="required-marker">*</span></label>
+      <input [carInput]="yearLabel" formControlName="year" id="year" type="number">
+      <div *ngIf="isControlInvalid('year')" class="error">
+        <div
+          *ngIf="getErrors('year').required  && !getErrors('year').min && !getErrors('year').max">
+          Year required
+        </div>
+        <div *ngIf="getErrors('year').min || getErrors('year').max">
+          Wrong year
+        </div>
+      </div>
+    </div>
+    <div class="input-container">
+      <label #engineLabel class="input-label" for="engine">Engine <span class="required-marker">*</span></label>
+      <input [carInput]="engineLabel" formControlName="engine" id="engine" type="text">
+      <div *ngIf="isControlInvalid('engine')" class="error">
+        Engine is required
+      </div>
+    </div>
+    <div class="select-container">
+      <label #fuelLabel class="select-label" for="fuel">Fuel <span class="required-marker">*</span></label>
+      <select [carInput]="fuelLabel" formControlName="fuel" id="fuel">
+        <option *ngFor="let fuel of fuelTypes" [value]="fuel.value">
+          {{fuel.name}}
+        </option>
+      </select>
+      <div *ngIf="isControlInvalid('fuel')" class="error">
+        Fuel is required
+      </div>
+    </div>
+    <div class="select-container">
+      <label #gearLabel class="select-label" for="gear">Gear <span class="required-marker">*</span></label>
+      <select [carInput]="gearLabel" formControlName="gear" id="gear">
+        <option *ngFor="let gear of gearTypes" [value]="gear.value">
+          {{gear.name}}
+        </option>
+      </select>
+      <div *ngIf="isControlInvalid('gear')" class="error">
+        Gear is required
+      </div>
+    </div>
+    <div class="select-container">
+      <label #WDLabel class="select-label" for="wheelsDrive">WD <span class="required-marker">*</span></label>
+      <select [carInput]="WDLabel" formControlName="wheelsDrive" id="wheelsDrive">
+        <option *ngFor="let wheelsDrive of wheelsDriveTypes" [value]="wheelsDrive.value">
+          {{wheelsDrive.name}}
+        </option>
+      </select>
+      <div *ngIf="isControlInvalid('wheelsDrive')" class="error">
+        Wheels drive required
+      </div>
+    </div>
+    <div class="input-container">
+      <label #doorsLabel class="input-label" for="doors">Doors <span class="required-marker">*</span></label>
+      <input [carInput]="doorsLabel" formControlName="doors" id="doors" type="number">
+      <div *ngIf="isControlInvalid('doors')" class="error">
+        <div *ngIf="getErrors('doors').required">
+          Number of doors is required
+        </div>
+        <div *ngIf="getErrors('doors').min">
+          Car must have min 2 door
+        </div>
+        <div *ngIf="getErrors('doors').max">
+          To much doors
+        </div>
+      </div>
+    </div>
+    <div class="input-container">
+      <label #seatsLabel class="input-label" for="seats">Seats <span class="required-marker">*</span></label>
+      <input [carInput]="seatsLabel" formControlName="seats" id="seats" type="number">
+      <div *ngIf="isControlInvalid('seats')" class="error">
+        <div *ngIf="getErrors('seats').required">
+          Number of seats is required
+        </div>
+        <div *ngIf="getErrors('seats').min">
+          Car must have min 2 seat
+        </div>
+        <div *ngIf="getErrors('seats').max">
+          To much seats
+        </div>
+      </div>
+    </div>
+    <div class="input-container">
+      <label #carClassLabel class="input-label" for="class">Car class <span class="required-marker">*</span></label>
+      <input [carInput]="carClassLabel" formControlName="carClass" id="class" type="text">
+      <div *ngIf="isControlInvalid('carClass')" class="error">
+        Car class is required
+      </div>
+    </div>
+    <div class="input-container">
+      <label #fuelConsumptionLabel class="input-label" for="fuelConsumption">Fuel consumption <span class="required-marker">*</span></label>
+      <input [carInput]="fuelConsumptionLabel" autocomplete="none" formControlName="fuelConsumption"
+             id="fuelConsumption" type="number">
+      <div *ngIf="isControlInvalid('fuelConsumption')" class="error">
+        Fuel consumption is required
+        <div *ngIf="getErrors('fuelConsumption').required">
+          Fuel consumption is required
+        </div>
+        <div *ngIf="getErrors('fuelConsumption').min">
+          Fuel consumption must be positive
+        </div>
+        <div *ngIf="getErrors('fuelConsumption').max">
+          To much big fuel consumption
+        </div>
+      </div>
+    </div>
+    <div class="input-container">
+      <label #serialNumberLabel class="input-label" for="serialNumber">Car registration number <span class="required-marker">*</span></label>
+      <input [carInput]="serialNumberLabel" formControlName="serialNumber" id="serialNumber" type="text">
+      <div *ngIf="isControlInvalid('serialNumber')" class="error">
+        <div *ngIf="getErrors('serialNumber').required">Car registration number is required</div>
+        <div *ngIf="getErrors('serialNumber').maxlength">To long car registration number</div>
+      </div>
+    </div>
+    <div class="input-container">
+      <label #priceLabel class="input-label" for="price">Price <span class="required-marker">*</span></label>
+      <input [carInput]="priceLabel" formControlName="price" id="price" type="number">
+      <div *ngIf="isControlInvalid('price')" class="error">
+        <div *ngIf="getErrors('price').required">
+          Price is required
+        </div>
+        <div *ngIf="getErrors('price').min">
+          Price must be positive
+        </div>
+        <div *ngIf="getErrors('price').max">
+          To much big price
+        </div>
+
+      </div>
+    </div>
+    <div class="input-container">
+      <label #distanceLabel class="input-label" for="distance">Distance included <span class="required-marker">*</span></label>
+      <input [carInput]="distanceLabel" formControlName="distance" id="distance" type="number">
+      <div *ngIf="isControlInvalid('distance')" class="error">
+        <div *ngIf="getErrors('distance').required">
+          Included distance is required
+        </div>
+        <div *ngIf="getErrors('distance').min">
+          Included distance must be positive
+        </div>
+      </div>
+    </div>
+    <label class="part-label">Features:</label>
+    <div class="input-container">
+      <input #input (change)="features[i] = input.value" *ngFor="let feature of features; index as i" [value]="feature"
+             class="feature-input" placeholder="Type feature" type="text">
+      <button (click)="features.push('')" [disabled]="!features[features.length-1]" type="button">Add feature</button>
+    </div>
+    <label class="part-label">About:</label>
+    <div class="input-container about-container">
+      <textarea formControlName="about" id="about" placeholder="About (max 500 chars)" rows="10" type="text"></textarea>
+    </div>
+    <label class="part-label">Photos of your car:</label>
+    <div class="file-input-container">
+      <input #uploadImage (change)="uploadFiles(uploadImage.files)" formControlName="photos" id="photos" multiple
+             type="file">
+      <label class="file-input-label" for="photos">{{fileNames}}</label>
+    </div>
+    <div *ngFor="let file of files" class="files-chip-container">
+      <mat-chip-list>
+        <mat-chip (removed)="removePhoto(file)" [disabled]="photosUrlsMap.get(file) === ''" removable="true"
+                  selectable="false">
+          {{photoNamesMap.get(file)}}
+          <i class="icon-cancel-circled" matChipRemove></i>
+        </mat-chip>
+      </mat-chip-list>
+      <mat-progress-bar *ngIf="photosProgressMap.get(file) as progress" [value]="progress"></mat-progress-bar>
+    </div>
+    <button [disabled]="!isFormValid()" type="submit">Submit</button>
+  </form>
+</div>
+<app-footer></app-footer>

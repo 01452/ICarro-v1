@@ -1,0 +1,30 @@
+@import "../../variables";
+
+.car-price-container {
+  background: $white 0 0 no-repeat padding-box;
+  box-shadow: $shadow;
+  display: flex;
+  margin-right: 1vh;
+  width: max-content;
+
+  .car-price-prefix {
+    font: 1em/4.6em "Rawline SemiBold";
+    color: $black;
+    transform: translate(30%, -30%);
+    margin-left: 4px;
+    margin-right: 1vh;
+  }
+
+  .car-price-value {
+    font: 4em/1.2em Bebas Neue;
+    color: $black;
+  }
+
+  .car-price-label {
+    align-self: center;
+    transform: rotate(-90deg) translateX(10%);
+    font: 1em/1.2em Bebas Neue;
+    color: $dark-grey;
+    text-transform: capitalize;
+  }
+}

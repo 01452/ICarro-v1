@@ -1,0 +1,11 @@
+<div class="slider-container" #sliderContainer [ngStyle]="{'height': containerHeight}">
+  <img *ngFor="let image of photoUrls; let i = index" [src]="image"
+       [ngClass]="{'hidden-left': i < currentPhoto, 'hidden-right': i > currentPhoto}">
+  <button class="plus-btn" (click)="plusClick()">
+    <i class="icon-right-open"></i>
+  </button>
+  <button class="minus-btn"(click)="minusClick()">
+    <i class="icon-left-open"></i>
+  </button>
+</div>
+

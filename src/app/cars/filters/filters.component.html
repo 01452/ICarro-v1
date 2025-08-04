@@ -1,0 +1,58 @@
+<div class="filter-card">
+  <h1 class="title">Find your car now!</h1>
+  <form (submit)="search()" [formGroup]="filtersForm">
+    <div class="select-container">
+      <label #makeLabel class="select-label" for="make">Make</label>
+      <select [carInput]="makeLabel" formControlName="make" id="make">
+        <option [value]="''"></option>
+        <option *ngFor="let filter of filters" [value]="filter.make">
+          {{filter.make}}
+        </option>
+      </select>
+    </div>
+    <div class="select-container">
+      <label #modelLabel class="select-label" for="model">Model</label>
+      <select [carInput]="modelLabel" formControlName="model" id="model">
+        <option [value]="''"></option>
+        <option *ngFor="let model of getModels(this.filtersForm.controls.make.value)" [value]="model.model">
+          {{model.model}}
+        </option>
+      </select>
+    </div>
+    <div class="input-container">
+      <label #yearLabel class="input-label" for="year">Year</label>
+      <input [carInput]="yearLabel" formControlName="year" id="year" type="number">
+      <div *ngIf="filtersForm.controls.year.errors" class="error">
+        Wrong year
+      </div>
+    </div>
+    <div class="select-container">
+      <label #fuelLabel class="select-label" for="fuel">Fuel</label>
+      <select [carInput]="fuelLabel" formControlName="fuel" id="fuel">
+        <option [value]="''"></option>
+        <option *ngFor="let fuel of fuelTypes" [value]="fuel.value">
+          {{fuel.name}}
+        </option>
+      </select>
+    </div>
+    <div class="select-container">
+      <label #gearLabel class="select-label" for="gear">Gear</label>
+      <select [carInput]="gearLabel" formControlName="gear" id="gear">
+        <option [value]="''"></option>
+        <option *ngFor="let gear of gearTypes" [value]="gear.value">
+          {{gear.name}}
+        </option>
+      </select>
+    </div>
+    <div class="select-container">
+      <label #wheelsDriveLabel class="select-label" for="wheelsDrive">WD</label>
+      <select [carInput]="wheelsDriveLabel" formControlName="wheelsDrive" id="wheelsDrive">
+        <option [value]="''"></option>
+        <option *ngFor="let wheelsDrive of wheelsDriveTypes" [value]="wheelsDrive.value">
+          {{wheelsDrive.name}}
+        </option>
+      </select>
+    </div>
+    <button type="submit">Search</button>
+  </form>
+</div>

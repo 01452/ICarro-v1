@@ -1,0 +1,20 @@
+<div class="login-registration-dialog-container">
+  <h1 class="title">
+    <ng-container *ngIf="loginFlag; else registrationLabel">Log in</ng-container>
+    <ng-template #registrationLabel>Registration</ng-template>
+  </h1>
+  <ng-container *ngIf="loginFlag; else registrationTemplate">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <div [ngClass]="{'loading': loading}">
+      <app-login (loading)="loading = $event" (logged-in)="dialogRef.close()"
+                 (registration)="loginFlag = false"></app-login>
+    </div>
+  </ng-container>
+  <ng-template #registrationTemplate>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <div [ngClass]="{'loading': loading}">
+      <app-registration (loading)="loading = $event" (login)="loginFlag = true"
+                        (registered)="dialogRef.close()"></app-registration>
+    </div>
+  </ng-template>
+</div>

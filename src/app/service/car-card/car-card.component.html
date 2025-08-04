@@ -1,0 +1,6 @@
+<div class="car-card">
+  <ng-container *ngIf="car">
+    <div class="car-img-container" [ngStyle]="{backgroundImage: 'url('+car.image_url[0]+')'}"></div>
+    <car-details [car]="car" class="details-card"></car-details>
+  </ng-container>
+</div>

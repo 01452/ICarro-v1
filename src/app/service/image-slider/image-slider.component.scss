@@ -1,0 +1,48 @@
+@import "../../variables";
+.slider-container {
+  width: 100%;
+
+  position: relative;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    transition: .5s;
+
+    &.hidden-left {
+      left: -100%;
+    }
+
+    &.hidden-right {
+      left: 100%;
+    }
+
+  }
+
+  button {
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+    background: $transparent-white;
+    box-shadow: none;
+
+    &:hover {
+      background: $transparent-white-strong;
+    }
+
+    &.plus-btn {
+      left: calc(100% - 2em);
+    }
+
+    &.minus-btn {
+      left: 2em;
+    }
+
+    i {
+      opacity: 1;
+      color: $black;
+    }
+  }
+}

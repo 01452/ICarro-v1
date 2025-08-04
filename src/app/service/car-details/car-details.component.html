@@ -1,0 +1,6 @@
+<ng-container *ngIf="car">
+  <div class="details-container">
+    <span class="title">{{car.make}} {{car.model}}<span class="year">{{car.year}}</span></span>
+    <car-price-label [car]="car"></car-price-label>
+  </div>
+</ng-container>

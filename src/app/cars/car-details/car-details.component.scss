@@ -1,0 +1,132 @@
+@import "../../variables";
+
+.loading {
+  position: absolute;
+  top: 30vh;
+  left: 50%;
+  transform: translateY(-50%);
+}
+
+.car-details-container {
+
+  display: flex;
+  flex-wrap: wrap;
+
+  @media screen and (min-width: 800px) and (orientation: landscape) {
+    margin-left: 8vw;
+    margin-top: 8vh;
+
+  }
+
+  @media screen and (max-width: 800px), screen and (orientation: portrait) {
+    flex-direction: column;
+    margin: 0 3vw 1rem;
+  }
+
+  .car-gallery {
+    @media screen and (min-width: 800px) and (orientation: landscape) {
+      flex-basis: calc(10 / 17 * 100%);
+
+      car-details.car-title {
+        font-size: 1.5rem;
+
+        ::ng-deep .details-container {
+          margin-left: 5rem;
+        }
+      }
+    }
+  }
+
+  .dates-select {
+
+    @media screen and (min-width: 800px) and (orientation: landscape) {
+      //.5rem - margin
+      flex-basis: calc(7 / 17 * 100% - .5rem);
+      margin-left: 0.5rem;
+      padding-top: 6vh;
+      padding-left: 3.5vw;
+      //1.5rem - car-details font size. 4 - font size of the biggest element of car-details (price). 1.2 - line height of it
+      margin-bottom: calc(1.5rem * 4 * 1.2);
+
+      box-shadow: $shadow;
+    }
+
+    @media screen and (max-width: 800px), screen and (orientation: portrait) {
+      order: -1;
+      margin-bottom: 2rem;
+      margin-top: 3rem;
+    }
+  }
+
+  .car-details {
+    @media screen and (min-width: 800px) and (orientation: landscape) {
+      flex-basis: calc(10 / 17 * 100%);
+    }
+
+    @media screen and (max-width: 800px), screen and (orientation: portrait) {
+      margin-top: 2rem;
+    }
+
+    .details-container {
+
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      column-gap: .5rem;
+
+      .column {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: .5rem;
+        font: 1em/1.5em "Rawline Regular";
+        margin-top: 1rem;
+
+        span {
+          color: $dark-grey;
+
+          &:not(.address) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          &:nth-child(odd) {
+            text-align: right;
+          }
+
+          &:nth-child(even) {
+            text-align: left;
+            color: $black;
+            align-self: end;
+          }
+        }
+
+        ul {
+          text-align: left;
+          color: $black;
+          list-style-type: none;
+          padding-left: 0;
+        }
+
+        &.about-container {
+          grid-column: span 2;
+          grid-template-columns: 1fr 5fr;
+        }
+
+        .one-line {
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  .google-map {
+    height: 100%;
+    min-height: 50vh;
+    box-shadow: $shadow;
+
+    @media screen and (min-width: 800px) and (orientation: landscape) {
+      //.5rem - margin
+      flex-basis: calc(7 / 17 * 100% - .5rem);
+      margin-left: 0.5rem;
+    }
+  }
+}

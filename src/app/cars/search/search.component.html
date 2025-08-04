@@ -1,0 +1,43 @@
+<div class="search-card">
+  <div class="search-container">
+    <h1 class="title">Find your car now!</h1>
+    <h2 class="subtitle">Type your data and hit Yalla!</h2>
+    <form (submit)="search(searchForm.value)" [formGroup]="searchForm">
+      <div class="input-container">
+        <label #cityLabel class="input-label" for="city">City <span class="required-marker">*</span></label>
+        <input #cityInput [carInput]="cityLabel" formControlName="city" id="city" placeholder="" type="text">
+        <div *ngIf="isControlInvalid('city')" class="error">
+          City is required
+        </div>
+      </div>
+      <div class="input-container">
+        <label #datesLabel class="input-label" for="dates">Dates <span class="required-marker">*</span></label>
+        <input (click)="datePicker.open()" [carInput]="datesLabel" [max]="maxDate" [min]="minStartDate"
+               [satDatepicker]="datePicker" formControlName="dates" id="dates">
+        <sat-datepicker #datePicker [rangeMode]="true"></sat-datepicker>
+        <div *ngIf="isControlInvalid('dates')" class="error">
+          <div
+            *ngIf="getErrors('dates')?.required  && !getErrors('date')?.matDatepickerParse">
+            Dates are required
+          </div>
+          <div *ngIf="getErrors('dates')?.matDatepickerMin">
+            You can't pick date before today
+          </div>
+
+          <div *ngIf="getErrors('dates')?.matDatepickerRange">
+            Second date must be after first date
+          </div>
+          <div *ngIf="getErrors('dates')?.minRange">
+            You can't book car for less than a day
+          </div>
+          <div *ngIf="getErrors('dates')?.matDatepickerMax">
+            You can't pick date after one year
+          </div>
+        </div>
+      </div>
+      <button [disabled]="searchForm.invalid" type="submit">Y’alla!</button>
+    </form>
+  </div>
+</div>
+<app-special-offers></app-special-offers>
+<app-footer></app-footer>

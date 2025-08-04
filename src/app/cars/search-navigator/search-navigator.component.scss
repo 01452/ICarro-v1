@@ -1,0 +1,38 @@
+@import "../../variables";
+
+.nav-tabs {
+  display: flex;
+  transform: translateX(-5%);
+
+  .filter {
+    background: $black;
+  }
+
+  .search {
+    background: $red;
+  }
+
+  .map {
+    background: $grey;
+  }
+
+  .nav-tab {
+    width: 100%;
+    transform: skewX(45deg);
+    padding: 1% 0;
+
+    &.active-tab {
+      width: 220%;
+    }
+
+    .tab-label {
+      font: .9rem/2em "Rawline Regular";
+      transform: skewX(-45deg) translate(-50%, -50%);
+      color: $white;
+      position: relative;
+      margin: 0;
+      top: 50%;
+      left: 50%;
+    }
+  }
+}

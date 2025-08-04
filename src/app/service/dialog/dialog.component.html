@@ -1,0 +1,9 @@
+<div class="dialog-container">
+  <h1 class="title">{{title}}</h1>
+  <h2 class="message">{{message}}</h2>
+  <div class="buttons-container">
+    <button [matDialogClose]="{negative: true}" class="negative-button" *ngIf="negativeBtn">{{negativeBtn}}</button>
+    <button [matDialogClose]="{neutral: true}" class="neutral-button" *ngIf="neutralBtn">{{neutralBtn}}</button>
+    <button [matDialogClose]="{positive: true}" class="positive-button" *ngIf="positiveBtn">{{positiveBtn}}</button>
+  </div>
+</div>

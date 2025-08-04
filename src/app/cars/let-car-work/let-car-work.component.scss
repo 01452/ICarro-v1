@@ -1,0 +1,94 @@
+@import "../../variables";
+
+.car-card {
+
+  margin-bottom: 2vh;
+
+  @media screen and (min-width: 800px) and (orientation: landscape) {
+    margin-left: 9vw;
+    margin-top: 15vh;
+  }
+
+  form {
+    @media screen and (min-width: 800px) and (orientation: landscape) {
+      max-width: 30vw;
+    }
+  }
+
+
+  h1.title {
+    font-weight: bold;
+    font-size: 3em;
+  }
+
+  .part-label {
+    margin-top: 5vh;
+    font: 2em/1em "Rawline Regular";
+    color: $black;
+  }
+
+  .address-data {
+    font: 2em/1em "Rawline Regular";
+    color: $black;
+    margin-top: 1em;
+  }
+
+  .feature-input {
+    margin-top: 2vh;
+  }
+
+  .file-input-container {
+    position: relative;
+    font-size: 12px;
+    height: 2em;
+    margin-bottom: 1vh;
+
+    label.file-input-label {
+      border: 1px solid $grey;
+      position: absolute;
+      top: 0;
+      margin-bottom: 0;
+      padding: .5vh 0 .5vh 1vw;
+      font: 2em/1em "Rawline SemiBold";
+      color: $black;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    input[type=file] {
+      position: absolute;
+      top: 0;
+      font: 2em/1em "Rawline SemiBold";
+      opacity: 0;
+      width: 100%;
+      padding: .5vh 0 .5vh 1vw;
+    }
+
+    input.ng-touched.ng-invalid + label {
+      border-color: $red;
+    }
+  }
+
+  .files-chip-container {
+    margin-top: 2em;
+  }
+
+  button[type=submit] {
+    margin-top: 2vh;
+  }
+}
+
+.progress-container {
+  position: fixed;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.4);
+  z-index: 10;
+
+  mat-spinner {
+    margin: auto;
+  }
+}

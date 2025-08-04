@@ -1,0 +1,44 @@
+<form (submit)="register(registrationForm.value)" [formGroup]="registrationForm">
+  <div class="input-container">
+    <label #nameLabel class="input-label" for="name">Name <span class="required-marker">*</span></label>
+    <input [carInput]="nameLabel" autocomplete="name" formControlName="firstName" id="name" type="text">
+    <div *ngIf="isControlInvalid('firstName')" class="error">
+      Name is required
+    </div>
+  </div>
+  <div class="input-container">
+    <label #lastNameLabel class="input-label" for="lastName">Last name <span class="required-marker">*</span></label>
+    <input [carInput]="lastNameLabel" autocomplete="family-name" formControlName="lastName" id="lastName" type="text">
+    <div *ngIf="isControlInvalid('lastName')" class="error">
+      Last name is required
+    </div>
+  </div>
+  <div class="input-container">
+    <label #emailLabel class="input-label" for="email">Email <span class="required-marker">*</span></label>
+    <input [carInput]="emailLabel" autocomplete="email" formControlName="email" id="email" type="email">
+    <div *ngIf="isControlInvalid('email')" class="error">
+      <div *ngIf="getError('email').required">Email is required</div>
+      <div *ngIf="getError('email').email">Wrong email format</div>
+      <div *ngIf="getError('email').pattern">Wrong email format</div>
+    </div>
+  </div>
+  <div class="input-container">
+    <label #passwordLabel class="input-label" for="password">Password <span class="required-marker">*</span></label>
+    <input [carInput]="passwordLabel" autocomplete="new-password" formControlName="password" id="password"
+           type="password">
+    <div *ngIf="isControlInvalid('password')" class="error">
+      <div *ngIf="getError('password').required">Password is required</div>
+      <div *ngIf="getError('password').minlength">Password must contain minimum 8 symbols</div>
+      <div *ngIf="getError('password').pattern">Password must contain 1 uppercase letter, 1 lowercase letter and one number </div>
+    </div>
+  </div>
+  <div class="checkbox-container">
+    <input formControlName="termsOfUse" id="terms-of-use" type="checkbox"><label class="checkbox-label terms-label" for="terms-of-use">
+    I agree to the <a href="terms-of-use">terms of use</a> and <a href="privacy-police">privacy
+    policy</a>
+  </label>
+  </div>
+  <button [disabled]="registrationForm.invalid" type="submit">Y’alla!</button>
+</form>
+<label class="login-navigator">Already registered? <span (click)="loginEmitter.emit()"
+                                                         class="navigator">Click here</span></label>

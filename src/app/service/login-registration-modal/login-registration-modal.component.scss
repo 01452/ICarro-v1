@@ -1,0 +1,15 @@
+.login-registration-dialog-container {
+
+  padding: 0 1rem;
+  width: 70vw;
+
+  @media screen and (min-width: 800px) and (orientation: landscape) {
+    width: 500px;
+  }
+
+  h1.title {
+    margin: auto;
+    text-align: center;
+  }
+}
+

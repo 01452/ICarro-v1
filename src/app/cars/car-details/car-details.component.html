@@ -1,0 +1,84 @@
+<div class="car-details-container">
+  <div class="car-gallery">
+    <image-slider [photos]="car.image_url"></image-slider>
+    <car-details *ngIf="car" [car]="car" class="car-title"></car-details>
+  </div>
+  <div class="dates-select">
+    <h1 class="title">Still available in your area</h1>
+    <form [formGroup]="reserveForm">
+      <div class="input-container">
+        <label #datesLabel class="input-label" for="dates">Dates <span class="required-marker">*</span></label>
+        <input (click)="datePicker.open()" [carInput]="datesLabel" [matDatepickerFilter]="filter"
+               [max]="maxDate" [min]="minStartDate" [satDatepicker]="datePicker" formControlName="dates"
+               id="dates">
+        <sat-datepicker #datePicker [rangeMode]="true"></sat-datepicker>
+        <div *ngIf="getErrors('dates')" class="error">
+          <div *ngIf="getErrors('dates')?.error">
+            {{getErrors('dates')?.error}}
+          </div>
+          <div *ngIf="getErrors('dates')?.required  && !getErrors('dates')?.matDatepickerParse">
+            Dates are required
+          </div>
+          <div *ngIf="getErrors('dates')?.matDatepickerMin">
+            You can't pick date before today
+          </div>
+          <div *ngIf="getErrors('dates')?.matDatepickerRange">
+            Second date must be after first date
+          </div>
+          <div *ngIf="getErrors('dates')?.matDatepickerParse">
+            Date doesn't exists
+          </div>
+          <div *ngIf="getErrors('dates')?.matDatepickerFilter || getErrors('dates')?.bookPeriod">
+            Picked period can't contain already picked dates
+          </div>
+          <div *ngIf="getErrors('dates')?.minRange">
+            You can't book car for less than a day
+          </div>
+          <div *ngIf="getErrors('dates')?.matDatepickerMax">
+            You can't pick date after one year
+          </div>
+        </div>
+      </div>
+      <button (click)="showDialog()"
+              [disabled]="reserveForm.invalid">Rent now!!
+      </button>
+    </form>
+  </div>
+  <div class="car-details">
+    <ng-container *ngIf="car">
+      <div class="details-container">
+        <div class="column one-line">
+          <span>Engine</span><span>{{car.engine}}</span>
+          <span>Fuel</span><span>{{car.fuel}}</span>
+          <span>Gear</span><span>{{car.gear}}</span>
+          <span>WD</span><span>{{car.wheels_drive}}</span>
+        </div>
+        <div class="column">
+          <span>Fuel cons</span><span>{{car.fuel_consumption}} L/100km</span>
+          <span>Doors</span><span>{{car.doors}}</span>
+          <span>Seats</span><span>{{car.seats}}</span>
+          <span>Class</span><span>{{car.car_class}}</span>
+        </div>
+        <div class="column address-column">
+          <span>Address</span>
+          <span>{{formattedAddress}}</span>
+          <span>Distance included</span>
+          <span>{{car.distance_included}} km</span>
+        </div>
+        <div class="column about-container">
+          <span>About</span><span>{{car.about}}</span>
+        </div>
+        <div class="column">
+          <span>Features:</span>
+          <ul>
+            <li *ngFor="let feature of car.features">
+              - {{feature}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div #gMap class="google-map"></div>
+</div>
+<app-footer></app-footer>

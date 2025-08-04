@@ -1,0 +1,18 @@
+@import "../../variables";
+
+.navigator {
+  text-decoration: underline;
+  font: .8rem/1.5em "Rawline Regular";
+  color: $dark-grey;
+  cursor: pointer;
+}
+
+.registration-navigator {
+  font: .8rem/1.5em "Rawline Regular";
+  color: $dark-grey;
+  margin-top: 2%;
+
+  @media screen and(max-width: 800px), (orientation: portrait) {
+    margin-left: 10%;
+  }
+}
