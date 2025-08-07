@@ -1,3 +1,3 @@
 [build]
-  publish = "dist/ICarro"
+  publish = "dist/ilCarro"
   command = "echo 'Skipping build step'"
