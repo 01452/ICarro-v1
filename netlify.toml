@@ -1,0 +1,3 @@
+[build]
+  publish = "dist/ICarro"
+  command = "echo 'Skipping build step'"
